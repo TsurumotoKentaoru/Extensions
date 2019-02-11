@@ -30,7 +30,7 @@ extension UIAlertController {
     }
     
     // ボタンが2つのアラートを取得する
-    internal static func doubleBtnAlert(title: String?, message: String?, otherBtnTitle: String, cancelBtnTitle: String, style: UIAlertControllerStyle = .alert, completion: (() -> Void)?, cancel: (() -> Void)?) -> UIAlertController
+    internal static func doubleBtnAlert(title: String?, message: String?, otherBtnTitle: String, cancelBtnTitle: String, style: UIAlertController.Style = .alert, completion: (() -> Void)?, cancel: (() -> Void)?) -> UIAlertController
     {
         let alert: UIAlertController = UIAlertController(title: title, message: message, preferredStyle: style)
         alert.addAction(UIAlertAction(title: cancelBtnTitle, style: .cancel, handler: { _ in
