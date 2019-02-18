@@ -1,14 +1,13 @@
 //
 //  UIAlertController+Extension.swift
+//  
 //
-//
-//  Created by 鶴本賢太朗 on 2019/01/09.
+//  Created by 鶴本賢太朗 on 2019/02/07.
 //  Copyright © 2019 Kentarou. All rights reserved.
 //
 
 import UIKit
 
-// TODO: 二つ以上のactionsheetを取得できるようになれば便利
 extension UIAlertController {
     
     // ボタンが1つのアラートを取得する
@@ -44,6 +43,21 @@ extension UIAlertController {
                 completion()
             }
         }))
+        return alert
+    }
+    
+    internal static func actionSheet(title: String?, message: String?, actionSheets: [(title: String, action: () -> Void)], cancelBtnTitle: String, cancelHandler: (() -> Void)?) -> UIAlertController {
+        let alert: UIAlertController = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+        for actionSheet in actionSheets {
+            let action: UIAlertAction = UIAlertAction(title: actionSheet.title, style: .default, handler: { _ in
+                actionSheet.action()
+            })
+            alert.addAction(action)
+        }
+        let cancel: UIAlertAction = UIAlertAction(title: cancelBtnTitle, style: .cancel) { _ in
+            cancelHandler?()
+        }
+        alert.addAction(cancel)
         return alert
     }
     
